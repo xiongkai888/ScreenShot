@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lanmei.screenshot">
+
+    <!-- 录屏权限和写入权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".ScreenShotApp"
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.lanmei.screenshot.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.PersonalDataSubActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.UploadingIdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.PersonalCompileSubActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.AccountDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.CompleteInformationActivity"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".ui.mine.service.RecordService" />
+
+        <activity
+            android:name=".ui.mine.activity.EvaluateManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".certificate.CameraActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.NewsListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.activity.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.activity.InformationDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".webviewpage.PhotoBrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.order.activity.OrderDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.order.activity.OrderDetailsSubActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>
