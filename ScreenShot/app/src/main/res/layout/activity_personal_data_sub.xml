@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mine.activity.PersonalDataSubActivity">
+
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_personal_icons"
+                style="@style/ll_bottom_h"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    style="@style/text"
+                    android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/d_30dp"
+                    android:layout_marginTop="@dimen/d_30dp"
+                    android:layout_weight="1"
+                    android:text="@string/individuality_portrait" />
+
+                <com.xson.common.widget.CircleImageView
+                    android:id="@+id/avatar_iv"
+                    android:layout_width="@dimen/d_55dp"
+                    android:layout_height="@dimen/d_55dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/default_pic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_name"
+                android:gravity="center_vertical"
+                style="@style/ll_bottom_personal">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="姓\u3000\u3000名：" />
+
+                <TextView
+                    android:id="@+id/name_tv"
+                    style="@style/text" />
+
+                <ImageView style="@style/in_right_icon" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_id_number"
+                style="@style/ll_bottom_personal">
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    style="@style/text_weight"
+                    android:text="性\u3000\u3000别：" />
+
+                <RadioGroup
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btnMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男"
+                        android:drawablePadding="5dp"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/check_bg_personal" />
+
+                    <RadioButton
+                        android:id="@+id/btnWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/check_bg_personal"
+                        android:drawablePadding="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="女"/>
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_phone"
+                android:gravity="center_vertical"
+                style="@style/ll_bottom_personal">
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="电\u3000\u3000话：" />
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    style="@style/text" />
+
+                <ImageView style="@style/in_right_icon" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/ll_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom_divider"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/address"
+                    style="@style/text"
+                    android:text="详细地址：" />
+
+
+                <TextView
+                    android:id="@+id/address_tv"
+                    style="@style/text"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/address"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@drawable/in_right"
+                    android:lineSpacingMultiplier="1.3" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/save_bt"
+        style="@style/button_style"
+        android:background="@drawable/button_unable"
+        android:text="@string/save" />
+
+</LinearLayout>

@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.lanmei.screanshot"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_URL", "\"http://zsqz2.hytqhy.com/api/\""
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            // 混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+            zipAlignEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.startsWith('app-release')) {
+                def fileName = outputFile.name.replace("app-release", "screen_vc${defaultConfig.versionCode}_vn${defaultConfig.versionName}_${buildTime()}")
+                outputFileName = fileName
+            }
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'screen'
+            keyPassword 'lanmei888'
+            storeFile file('G:/ScreenShot/ScreenShot/screen.jks')
+            storePassword 'lanmei888'
+        }
+        release {
+            keyAlias 'screen'
+            keyPassword 'lanmei888'
+            storeFile file('G:/ScreenShot/ScreenShot/screen.jks')
+            storePassword 'lanmei888'
+        }
+    }
+
+
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
+    }
+
+}
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmm')
+    return formattedDate
+}
+
+
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(path: ':common')
+    implementation project(':wheel-date-picker')
+    implementation project(':oss-android-sdk')
+    //轮播图
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
+    //WheelPicker包括DatePicker、TimePicker、OptionPicker、AddressPicker、NumberPicker等，
+    implementation 'cn.qqtheme.framework:WheelPicker:latest.integration'
+    //图片预览
+    implementation 'com.bm.photoview:library:1.4.1'
+    //九宫格
+    implementation 'pub.devrel:easypermissions:0.2.1'
+    implementation 'cn.bingoogolapple:bga-photopicker:1.2.3@aar'
+    implementation 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
+
+    //LeakCanary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ll_bottom_h"
+    android:gravity="center_vertical">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/h_match_parent_no"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/consumption_name_tv"
+                style="@style/text_weight"
+                android:text="微信消费" />
+
+            <TextView
+                android:id="@+id/consumption_sum_tv"
+                style="@style/text"
+                android:text="+500.00"
+                android:textColor="#ff0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/h_match_parent_no"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/balance_tv"
+                style="@style/text_weight"
+                android:textColor="@color/color666"
+                android:layout_weight="1"
+                android:text="余额：1568.00" />
+
+            <TextView
+                android:id="@+id/time_tv"
+                style="@style/text12color666"
+                android:text="2017-4-37" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        style="@style/text"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:src="@drawable/in_right" />
+
+
+</LinearLayout>

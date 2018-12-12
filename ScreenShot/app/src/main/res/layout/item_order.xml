@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_match_parent_no">
+
+
+    <include layout="@layout/include_order"/>
+
+    <TextView style="@style/line_H1dp_divider" />
+
+    <LinearLayout
+        style="@style/h_match_parent_no"
+        android:gravity="right">
+
+
+        <TextView
+            android:id="@+id/order_give_up_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_10dp"
+            android:background="@drawable/order_button"
+            android:gravity="center"
+            android:text="@string/give_up_order"
+            android:textSize="@dimen/txt_12sp" />
+
+        <TextView
+            android:id="@+id/order_delete_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/d_10dp"
+            android:background="@drawable/order_button"
+            android:gravity="center"
+            android:text="@string/delete_order"
+            android:textSize="@dimen/txt_12sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

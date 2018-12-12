@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_match_parent">
+
+    <TextView style="@style/line_H1dp_divider" />
+
+    <TextView
+        android:id="@+id/content_tv"
+        style="@style/match_parent"
+        android:textColor="@color/color2cc6fc"
+        android:background="@drawable/actionsheet_single_selector"
+        android:gravity="center"
+        android:padding="@dimen/d_10dp"
+        android:text="@string/have_finished" />
+
+</LinearLayout>

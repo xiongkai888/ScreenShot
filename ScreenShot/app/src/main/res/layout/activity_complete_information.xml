@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.lanmei.screenshot.ui.mine.activity.CompleteInformationActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_10dp"
+        android:text="请上传旺旺号实名信息" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text16colorBlack"
+                    android:text="评论管理截图" />
+
+                <TextView
+                    android:id="@+id/pic_method_tv"
+                    style="@style/text16colorColorPrimaryDark"
+                    android:layout_marginLeft="@dimen/d_50dp"
+                    android:text="查看操作方法" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:padding="@dimen/d_10dp">
+
+                <ImageView
+                    android:id="@+id/screen_shot_iv"
+                    android:layout_width="@dimen/d_100dp"
+                    android:layout_height="@dimen/d_100dp"
+                    android:src="@drawable/fix_photo" />
+
+                <TextView
+                    android:id="@+id/comment_interface_tv"
+                    style="@style/text14colorWhite"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="@dimen/d_40dp"
+                    android:background="@drawable/button_corners"
+                    android:paddingBottom="@dimen/d_5dp"
+                    android:paddingLeft="@dimen/d_10dp"
+                    android:paddingRight="@dimen/d_10dp"
+                    android:paddingTop="@dimen/d_5dp"
+                    android:text="点击登录评价页面" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text16colorBlack"
+                    android:text="实名号视频认证" />
+
+                <TextView
+                    android:id="@+id/video_method_tv"
+                    style="@style/text16colorColorPrimaryDark"
+                    android:layout_marginLeft="@dimen/d_40dp"
+                    android:text="查看操作方法" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:padding="@dimen/d_10dp">
+
+                <FrameLayout
+                    android:layout_width="@dimen/d_100dp"
+                    android:layout_height="@dimen/d_100dp">
+
+                    <VideoView
+                        android:id="@+id/video_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/video_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/fix_photo" />
+
+
+                </FrameLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/d_40dp">
+
+                    <Chronometer
+                        android:id="@+id/timer"
+                        style="@style/text14colorRed"
+                        android:format="录制时长" />
+
+                    <TextView
+                        android:id="@+id/record_start_tv"
+                        style="@style/text14colorWhite"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/button_corners"
+                        android:paddingBottom="@dimen/d_5dp"
+                        android:paddingLeft="@dimen/d_10dp"
+                        android:paddingRight="@dimen/d_10dp"
+                        android:paddingTop="@dimen/d_5dp"
+                        android:text="开始录制" />
+
+                    <TextView
+                        android:id="@+id/record_end_tv"
+                        style="@style/text14colorWhite"
+                        android:layout_alignParentBottom="true"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="@dimen/d_20dp"
+                        android:layout_toRightOf="@+id/record_start_tv"
+                        android:background="@drawable/button_unable"
+                        android:paddingBottom="@dimen/d_5dp"
+                        android:paddingLeft="@dimen/d_10dp"
+                        android:paddingRight="@dimen/d_10dp"
+                        android:paddingTop="@dimen/d_5dp"
+                        android:text="结束录制" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/next_step_bt"
+                style="@style/button_style"
+                android:layout_marginTop="@dimen/d_30dp"
+                android:text="@string/next_step" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

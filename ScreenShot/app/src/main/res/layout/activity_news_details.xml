@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_all_match_parent">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+
+            <TextView
+                android:id="@+id/title_tv"
+                style="@style/text"
+                android:layout_margin="@dimen/d_10dp"
+                android:text="@string/have_finished" />
+
+            <TextView
+                android:id="@+id/time_tv"
+                style="@style/text12color666"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:text="2018-7-25" />
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

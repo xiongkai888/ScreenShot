@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/v_match_parent">
+
+    <TextView
+        android:id="@+id/title_tv"
+        style="@style/text"
+        android:layout_margin="@dimen/d_10dp"
+        android:ellipsize="end"
+        android:lines="1" />
+
+    <ImageView
+        android:id="@+id/pic_iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="@dimen/d_10dp"
+        android:layout_marginLeft="@dimen/d_10dp"
+        android:layout_marginRight="@dimen/d_10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_pic" />
+
+</LinearLayout>

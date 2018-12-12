@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.lanmei.screenshot.ui.mine.activity.InformationDetailsActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <ScrollView
+        style="@style/all_match_parent_no"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10dp"
+                android:text="请准确填写真实有效身份信息" />
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="姓名" />
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/name_tv"
+                    style="@style/information_details_edit"
+                    android:hint="@string/input_name"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="生日" />
+
+                <TextView
+                    android:id="@+id/date_birth_tv"
+                    style="@style/text"
+                    android:hint="@string/choose_birthday" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_bottom_h"
+                android:paddingBottom="@dimen/d_6dp"
+                android:paddingTop="@dimen/d_6dp">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    android:text="性别" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/d_10dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/btnMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/check_bg_personal"
+                        android:drawablePadding="5dp"
+                        android:text="男" />
+
+                    <RadioButton
+                        android:id="@+id/btnWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/check_bg_personal"
+                        android:drawablePadding="5dp"
+                        android:text="女" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="@dimen/d_5dp"
+                android:paddingBottom="@dimen/d_5dp"
+                style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="职业" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@android:style/Theme.Holo.Light" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="手机号" />
+
+                <TextView
+                    android:id="@+id/phone_tv"
+                    style="@style/text" />
+
+                <!--<com.xson.common.widget.DrawClickableEditText-->
+                    <!--android:id="@+id/phone_et"-->
+                    <!--style="@style/information_details_edit"-->
+                    <!--android:hint="@string/input_phone_number"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:maxLength="11"-->
+                    <!--/>-->
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="微信号" />
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/weixin_et"
+                    style="@style/information_details_edit"
+                    android:hint="请输入微信号"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="QQ号" />
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/qq_et"
+                    style="@style/information_details_edit"
+                    android:hint="请输入QQ号"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="银行卡号" />
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/bank_num_et"
+                    style="@style/information_details_edit"
+                    android:hint="请输入银行卡号"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ll_bottom_details"
+                android:paddingBottom="@dimen/d_12dp"
+                android:paddingTop="@dimen/d_12dp">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="银行卡名称" />
+
+                <TextView
+                    android:id="@+id/bank_name_tv"
+                    style="@style/text" />
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:text="介绍人微信" />
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/other_weixin_et"
+                    style="@style/information_details_edit"
+                    android:hint="请输入介绍人微信"
+                    android:inputType="numberDecimal" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10dp"
+                android:text="请准确填写真实收货地址" />
+
+
+            <LinearLayout style="@style/ll_bottom_details">
+
+                <TextView
+                    style="@style/information_details_text"
+                    android:layout_weight="1"
+                    android:text="收货地址" />
+
+                <TextView
+                    android:id="@+id/address_tv"
+                    style="@style/text"
+                    android:drawableRight="@drawable/in_right"
+                    android:lines="1"
+                    android:gravity="center_vertical"
+                    android:hint="点击选择地址" />
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingRight="@dimen/d_10dp">
+
+                <com.xson.common.widget.DrawClickableEditText
+                    android:id="@+id/details_address_et"
+                    style="@style/match_parent_has"
+                    android:hint="请填写具体地址"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="@dimen/d_10dp" />
+
+            </FrameLayout>
+
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10dp"
+                android:text="请上传本人真实的微信收款码，不可错误（慎重）" />
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_20dp">
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_20dp"
+                    android:text="微信收款码" />
+
+                <ImageView
+                    android:id="@+id/pic_iv"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="@dimen/d_50dp"
+                    android:src="@drawable/fix_photo" />
+
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/d_10dp"
+                android:text="请确保以上信息完全正确，如果错误，可能会损失资金" />
+
+            <Button
+                android:id="@+id/submit_bt"
+                style="@style/button_style"
+                android:layout_marginTop="@dimen/d_20dp"
+                android:text="立即提交" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

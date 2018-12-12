@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+
+    <LinearLayout style="@style/v_all_match_parent_no">
+
+        <TextView
+            style="@style/match_parent_has"
+            android:gravity="center"
+            android:padding="@dimen/d_10dp"
+            android:text="我"
+            android:textSize="@dimen/txt_18sp" />
+
+
+        <RelativeLayout
+            style="@style/match_parent_has"
+            android:paddingBottom="@dimen/d_10dp">
+
+            <ImageView
+                android:id="@+id/bg_iv"
+                style="@style/match_parent"
+                android:layout_height="@dimen/d_100dp"
+                android:layout_marginBottom="@dimen/d_40dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mine_bg" />
+
+            <com.xson.common.widget.CircleImageView
+                android:id="@+id/pic_iv"
+                android:layout_width="@dimen/d_80dp"
+                android:layout_height="@dimen/d_80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/d_20dp"
+                android:src="@drawable/default_pic" />
+
+            <TextView
+                android:id="@+id/name_tv"
+                style="@style/text"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/d_5dp"
+                android:layout_toRightOf="@id/pic_iv"
+                android:paddingBottom="@dimen/d_10dp" />
+
+            <ImageView
+                android:id="@+id/in_data_iv"
+                style="@style/text"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/d_10dp"
+                android:src="@drawable/in_right" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_account"
+            style="@style/ll_bottom_h"
+            android:layout_marginTop="@dimen/d_20dp"
+            android:padding="@dimen/d_10dp">
+
+
+            <ImageView
+                style="@style/text"
+                android:src="@drawable/mine_6" />
+
+            <TextView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:text="账户余额" />
+
+            <TextView
+                android:id="@+id/balance_tv"
+                style="@style/text14colorRed"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:drawableRight="@drawable/in_right"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_identity"
+            style="@style/ll_bottom_h"
+            android:padding="@dimen/d_10dp">
+
+
+            <ImageView
+                style="@style/text"
+                android:src="@drawable/mine_93" />
+
+            <TextView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:text="身份验证" />
+
+            <TextView
+                android:id="@+id/data_tv"
+                style="@style/text12color666"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:drawableRight="@drawable/in_right"
+                android:gravity="center_vertical"
+                android:text="@string/perfect_data_wait" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_logout"
+            style="@style/ll_bottom_h_no"
+            android:padding="@dimen/d_10dp">
+
+
+            <ImageView
+                style="@style/text"
+                android:src="@drawable/mine_logout" />
+
+            <TextView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:text="退出登录" />
+
+            <TextView
+                style="@style/text12color666"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:drawableRight="@drawable/in_right"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

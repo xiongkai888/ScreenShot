@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context=".ui.mine.activity.UploadingIdActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/d_10dp"
+        android:text="请上传真实有效身份证信息" />
+
+    <ScrollView
+        style="@style/all_match_parent_no"
+        android:scrollbars="none">
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_20dp">
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_20dp"
+                    android:text="身份证正面" />
+
+                <ImageView
+                    android:id="@+id/front_iv"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="@dimen/d_50dp"
+                    android:src="@drawable/fix_photo" />
+
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_20dp">
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_20dp"
+                    android:text="身份证反面" />
+
+                <ImageView
+                    android:id="@+id/reverse_iv"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="@dimen/d_50dp"
+                    android:src="@drawable/fix_photo" />
+
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H1dp_divider" />
+
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/d_5dp"
+                android:paddingLeft="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_5dp">
+
+                <TextView
+                    android:layout_marginLeft="@dimen/d_10dp"
+                    style="@style/text"
+                    android:text="银行名称" />
+
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@android:style/Theme.Holo.Light"
+                    android:layout_marginLeft="@dimen/d_40dp" />
+
+            </LinearLayout>
+
+            <TextView style="@style/line_H1dp_divider" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingTop="@dimen/d_20dp">
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_20dp"
+                    android:text="银行卡" />
+
+                <ImageView
+                    android:id="@+id/bank_ka_iv"
+                    android:layout_width="160dp"
+                    android:layout_height="90dp"
+                    android:layout_marginLeft="@dimen/d_80dp"
+                    android:src="@drawable/fix_photo" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/next_step_bt"
+                style="@style/button_style"
+                android:layout_marginTop="@dimen/d_20dp"
+                android:text="@string/next_step" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

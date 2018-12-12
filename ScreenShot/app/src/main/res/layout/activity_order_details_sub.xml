@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/v_all_match_parent_no"
+    tools:context="com.lanmei.screenshot.ui.order.activity.OrderDetailsSubActivity">
+
+    <include layout="@layout/include_centertitletoolbar" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d_0dp"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+
+        <LinearLayout style="@style/v_all_match_parent_no">
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="1、关键字" />
+
+
+            <FrameLayout
+                style="@style/match_parent_has"
+                android:padding="@dimen/d_10dp">
+
+
+                <LinearLayout
+                    style="@style/h_match_parent"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp">
+
+
+                    <TextView
+                        android:id="@+id/search_val_tv"
+                        style="@style/text_weight"
+                        android:lines="1"
+                        android:padding="@dimen/d_5dp"
+                        android:textIsSelectable="true" />
+
+
+                    <TextView
+                        android:id="@+id/copy_tv"
+                        style="@style/text14colorWhite"
+                        android:layout_marginLeft="@dimen/d_5dp"
+                        android:background="@drawable/home_button"
+                        android:text="@string/copy" />
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="2、筛选商品" />
+
+
+            <LinearLayout style="@style/ll_bottom_h_order_details">
+
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="排列方式"
+                    android:textColor="@color/color666" />
+
+
+                <TextView
+                    android:id="@+id/search_order_tv"
+                    style="@style/text" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_h_order_details">
+
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="价格区间"
+                    android:textColor="@color/color666" />
+
+
+                <com.xson.common.widget.FormatTextView
+                    android:id="@+id/low_price_tv"
+                    style="@style/text"
+                    android:background="@color/white"
+                    app:defaultValue="0"
+                    app:formatText="@string/low_price" />
+
+                <com.xson.common.widget.FormatTextView
+                    android:id="@+id/high_price_tv"
+                    style="@style/text"
+                    android:layout_marginLeft="@dimen/d_3dp"
+                    android:background="@color/white"
+                    app:defaultValue="0"
+                    app:formatText="@string/high_price" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_h_order_details">
+
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="发货地"
+                    android:textColor="@color/color666" />
+
+
+                <TextView
+                    android:id="@+id/area_tv"
+                    style="@style/text" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ll_bottom_h_order_details">
+
+
+                <TextView
+                    style="@style/text_weight"
+                    android:text="折扣和服务"
+                    android:textColor="@color/color666" />
+
+
+                <TextView
+                    android:id="@+id/search_term_tv"
+                    style="@style/text" />
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="3、找到商品 (对比图片)" />
+
+            <FrameLayout
+                style="@style/match_parent_has"
+                android:padding="@dimen/d_10dp">
+
+                <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                    android:id="@+id/upload_img_photoLayout"
+                    style="@style/WrapWrap"
+                    android:visibility="visible"
+                    app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                    app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                    app:bga_snpl_editable="true"
+                    app:bga_snpl_itemCornerRadius="0dp"
+                    app:bga_snpl_itemSpanCount="3"
+                    app:bga_snpl_itemWhiteSpacing="4dp"
+                    app:bga_snpl_itemWidth="0dp"
+                    app:bga_snpl_maxItemCount="9"
+                    app:bga_snpl_otherWhiteSpacing="100dp"
+                    app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_dark"
+                    app:bga_snpl_plusDrawable="@drawable/fix_photo"
+                    app:bga_snpl_plusEnable="true"
+                    app:bga_snpl_sortable="true" />
+
+            </FrameLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="4、上传找到宝贝截图" />
+
+            <FrameLayout
+                style="@style/match_parent_has"
+                android:padding="@dimen/d_10dp">
+
+                <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                    android:id="@+id/pay_img_photoLayout"
+                    style="@style/WrapWrap"
+                    android:visibility="visible"
+                    app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                    app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                    app:bga_snpl_editable="true"
+                    app:bga_snpl_itemCornerRadius="0dp"
+                    app:bga_snpl_itemSpanCount="3"
+                    app:bga_snpl_itemWhiteSpacing="4dp"
+                    app:bga_snpl_itemWidth="0dp"
+                    app:bga_snpl_maxItemCount="9"
+                    app:bga_snpl_otherWhiteSpacing="100dp"
+                    app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_dark"
+                    app:bga_snpl_plusDrawable="@drawable/fix_photo"
+                    app:bga_snpl_plusEnable="true"
+                    app:bga_snpl_sortable="true" />
+
+            </FrameLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="5、货比三家" />
+
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:padding="@dimen/d_10dp">
+
+
+                <TextView
+                    style="@style/text"
+                    android:text="请浏览3个同类型商品，并复制淘口令到下方" />
+
+                <EditText
+                    android:id="@+id/goods_command1_et"
+                    style="@style/match_parent"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp" />
+
+                <EditText
+                    android:id="@+id/goods_command2_et"
+                    style="@style/match_parent"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp" />
+
+                <EditText
+                    android:id="@+id/goods_command3_et"
+                    style="@style/match_parent"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="6、检查淘口令" />
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:padding="@dimen/d_10dp">
+
+
+                <TextView
+                    style="@style/text"
+                    android:text="复制本商品淘口令到文本框" />
+
+                <EditText
+                    android:id="@+id/check_command_et"
+                    style="@style/match_parent"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp" />
+
+
+                <TextView
+                    style="@style/text"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:text="请手动输入店铺名称" />
+
+                <EditText
+                    android:id="@+id/store_name_et"
+                    style="@style/match_parent"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:hint="店铺名提示：灯***明"
+                    android:padding="@dimen/d_5dp" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="7、请浏览详情页，并不全下面文字" />
+
+            <TextView
+                style="@style/match_parent"
+                android:paddingBottom="@dimen/d_10dp"
+                android:paddingLeft="@dimen/txt_10sp"
+                android:paddingRight="@dimen/d_10dp"
+                android:text="提示：如找不到详情页在找茬，每隔10分钟点击对应找茬文字下面的【获取答案】来获取答案。只有确实找不到文字的情况下可以获取，系统会定期检查拍手手机获取答案的频率。"
+                android:textColor="@color/red"
+                android:textSize="@dimen/txt_12sp" />
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:text="航" />
+
+                <EditText
+                    android:id="@+id/zhao_cha1_et"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_5dp"
+                    android:background="@drawable/order_details_shape"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:maxWidth="@dimen/d_200dp"
+                    android:minWidth="@dimen/d_80dp"
+                    android:padding="@dimen/d_5dp"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    style="@style/text"
+                    android:text="材钢化玻璃" />
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_bottom_h">
+
+                <TextView
+                    android:id="@+id/get_answer1_tv"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_10dp"
+                    android:background="@drawable/home_button"
+                    android:text="获取答案"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:text="本产品5年包换5" />
+
+                <EditText
+                    android:id="@+id/zhao_cha2_et"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_5dp"
+                    android:background="@drawable/order_details_shape"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:maxWidth="@dimen/d_200dp"
+                    android:minWidth="@dimen/d_80dp"
+                    android:padding="@dimen/d_5dp"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    style="@style/text"
+                    android:text="修" />
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_bottom_h">
+
+                <TextView
+                    android:id="@+id/get_answer2_tv"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_10dp"
+                    android:background="@drawable/home_button"
+                    android:text="获取答案"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/h_match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:text="适应不同" />
+
+                <EditText
+                    android:id="@+id/zhao_cha3_et"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_5dp"
+                    android:background="@drawable/order_details_shape"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:maxLength="15"
+                    android:maxWidth="@dimen/d_200dp"
+                    android:minWidth="@dimen/d_80dp"
+                    android:padding="@dimen/d_5dp"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    style="@style/text"
+                    android:text="的应用照明" />
+
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/ll_bottom_h">
+
+                <TextView
+                    android:id="@+id/get_answer3_tv"
+                    style="@style/text"
+                    android:layout_margin="@dimen/d_10dp"
+                    android:background="@drawable/home_button"
+                    android:text="获取答案"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/match_parent"
+                android:padding="@dimen/d_10dp"
+                android:text="逛一个同店铺商品" />
+
+            <LinearLayout
+                style="@style/v_match_parent"
+                android:layout_marginBottom="@dimen/d_10dp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/d_10dp">
+
+                <TextView
+                    style="@style/text"
+                    android:text="浏览任意1件同店铺商品，复制淘口令到下方" />
+
+                <EditText
+                    android:id="@+id/same_store_command_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/d_10dp"
+                    android:background="@drawable/order_details_shape"
+                    android:padding="@dimen/d_5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        style="@style/h_match_parent_no"
+        android:layout_height="@dimen/d_50dp">
+
+        <TextView
+            android:id="@+id/give_up_order_tv"
+            style="@style/text14colorWhite"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="放弃订单" />
+
+        <TextView
+            android:id="@+id/next_step_tv"
+            style="@style/text14colorWhite"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/color33cea6"
+            android:gravity="center"
+            android:text="下一步" />
+    </LinearLayout>
+
+</LinearLayout>

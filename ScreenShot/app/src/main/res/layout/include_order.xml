@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/h_match_parent"
+        android:gravity="center_vertical"
+        android:padding="@dimen/d_10dp">
+
+        <TextView
+            android:id="@+id/task_num_tv"
+            style="@style/text_weight" />
+
+
+        <TextView
+            android:id="@+id/state_tv"
+            style="@style/text14color2cc6fc"
+            android:layout_marginLeft="@dimen/d_10dp" />
+
+    </LinearLayout>
+
+    <TextView style="@style/line_H1dp_divider" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="@dimen/d_10dp"
+            android:background="@color/colorF4F4"
+            android:padding="@dimen/d_10dp">
+
+
+            <ImageView
+                android:id="@+id/pic_iv"
+                android:layout_width="@dimen/d_100dp"
+                android:layout_height="@dimen/d_100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_pic" />
+
+            <TextView
+                android:id="@+id/goods_tv"
+                style="@style/text"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_toRightOf="@id/pic_iv"
+                android:ellipsize="end"
+                android:lines="3" />
+
+
+            <TextView
+                android:id="@+id/merchant_tv"
+                style="@style/text12color666"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:layout_toRightOf="@id/pic_iv" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <com.xson.common.widget.FormatTextView
+        android:id="@+id/commission_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="end"
+        android:paddingBottom="@dimen/d_10dp"
+        android:paddingRight="@dimen/d_10dp"
+        app:defaultValue="0"
+        app:formatText="@string/commission_num" />
+
+</LinearLayout>
