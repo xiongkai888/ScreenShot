@@ -18,7 +18,6 @@ import com.xson.common.R;
 import com.xson.common.api.AbstractApi;
 import com.xson.common.bean.BaseBean;
 import com.xson.common.utils.L;
-import com.xson.common.utils.SysUtils;
 import com.xson.common.widget.ProgressHUD;
 
 import java.io.File;
@@ -41,29 +40,23 @@ public class HttpClient implements IHttpClient {
     private final WeakReference<Context> contextWeakReference;
     private ProgressHUD mProgressHUD;
     private boolean useCache = false;
-    private static boolean debug;
     private ConcurrentLinkedQueue<BeanRequest> mWaitingRequests;
     private OnRequestFinishListener onRequestFinishListener;
     private boolean cancelable = true;
     private Context context;
-    private static HttpClient httpClient;
     private AbstractApi.Enctype enctype = AbstractApi.Enctype.TEXT_PLAIN;
 
     private HttpClient(Context context) {
-        this.contextWeakReference = new WeakReference<Context>(context);
-        debug = SysUtils.isDebug(context); //直接显示详细错误
+        this.contextWeakReference = new WeakReference<>(context);
         this.context = context;
     }
 
     public synchronized static HttpClient newInstance(Context context) {
-        if (requestQueue == null){
+        if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
-        if (httpClient == null){
-            httpClient = new HttpClient(context.getApplicationContext());
-        }
 
-        return httpClient;
+        return new HttpClient(context);
     }
 
     public static interface ErrorInterceptor {
@@ -96,7 +89,6 @@ public class HttpClient implements IHttpClient {
         api.setTime(context, System.currentTimeMillis() / 1000);
         String url = api.getUrl();
         Map<String, Object> params = api.getParams();
-        api.handleParams(contextWeakReference.get(), params);
         if (api.requestMethod() == AbstractApi.Method.POST) {
             enctype = api.requestEnctype();
             return post(url, params, successListener, errorListener);
@@ -121,7 +113,6 @@ public class HttpClient implements IHttpClient {
         api.setTime(context, System.currentTimeMillis() / 1000);
         String url = api.getUrl();
         Map<String, Object> params = api.getParams();
-        api.handleParams(contextWeakReference.get(), params);
         BeanRequest<T> request;
         if (api.requestMethod() == AbstractApi.Method.POST) {
             enctype = api.requestEnctype();
@@ -150,54 +141,12 @@ public class HttpClient implements IHttpClient {
         return loadingRequest(api, successListener, errorListener, null);
     }
 
-    public <T extends BaseBean> BeanRequest<T> request(boolean hasLoading, AbstractApi api, BeanRequest.SuccessListener<T> successListener, Response.ErrorListener errorListener) {
-        return request(api, successListener, errorListener, null, hasLoading);
-    }
-
-    public <T extends BaseBean> BeanRequest<T> request(boolean hasLoading, AbstractApi api, BeanRequest.SuccessListener<T> successListener) {
-        return request(api, successListener, null, null, hasLoading);
-    }
-
-    public <T extends BaseBean> BeanRequest<T> post(String url, Map<String, Object> postParamMap, BeanRequest.SuccessListener<T> successListener, Response.ErrorListener errorListener, String loadingText, boolean hasLoading) {
-        BeanRequest<T> request = new BeanRequest<>(Request.Method.POST, url, postParamMap, successHandler(successListener), errorHandler(errorListener));
-        if (enctype == AbstractApi.Enctype.MULTIPART)
-            request.asMultipart();
-        addRequest(request, hasLoading, loadingText);
-        return request;
-    }
-
-
-    public <T extends BaseBean> BeanRequest<T> get(String url, BeanRequest.SuccessListener<T> successListener, Response.ErrorListener errorListener, String loadingText, boolean hasLoading) {
-        BeanRequest<T> request = new BeanRequest<>(Request.Method.GET, url, null, successHandler(successListener), errorHandler(errorListener));
-        addRequest(request, hasLoading, loadingText);
-        return request;
-    }
-
-    public <T extends BaseBean> BeanRequest<T> request(AbstractApi api, BeanRequest.SuccessListener<T> successListener, Response.ErrorListener errorListener, String loadingText, boolean hasLoading) {
-        if (contextWeakReference.get() == null)
-            return null;
-        api.setTime(context, System.currentTimeMillis() / 1000);
-        String url = api.getUrl();
-        Map<String, Object> params = api.getParams();
-        api.handleParams(contextWeakReference.get(), params);
-        if (api.requestMethod() == AbstractApi.Method.POST) {
-            enctype = api.requestEnctype();
-            return post(url, params, successListener, errorListener, loadingText, hasLoading);
-        } else {
-            if (!params.isEmpty()) {
-                url += "?" + mapToQueryString(params);
-            }
-            return get(url, successListener, errorListener, loadingText, hasLoading);
-        }
-    }
-
     public <T extends BaseBean> BeanRequest<T> loadingRequest(AbstractApi api, BeanRequest.SuccessListener<T> successListener, Response.ErrorListener errorListener, String loadingText) {
         if (contextWeakReference.get() == null)
             return null;
         api.setTime(context, System.currentTimeMillis() / 1000);
         String url = api.getUrl();
         Map<String, Object> params = api.getParams();
-        api.handleParams(contextWeakReference.get(), params);
         if (api.requestMethod() == AbstractApi.Method.POST) {
             enctype = api.requestEnctype();
             return loadingPost(url, params, successListener, errorListener, loadingText);
@@ -373,10 +322,10 @@ public class HttpClient implements IHttpClient {
                 error = new VolleyError(context.getString(R.string.http_request_timeout), error);
             } else {
                 String msg;
-                if (error != null && error.getCause() != null && error.getCause() instanceof JSONException) {
-                    msg = context.getString(R.string.http_request_error);
-                } else {
+                if (error != null && error.getCause() instanceof JSONException) {
                     msg = context.getString(R.string.http_parse_error);
+                } else {
+                    msg = context.getString(R.string.http_request_error);
                 }
                 if (error != null && error.networkResponse != null) {
                     msg += " #" + error.networkResponse.statusCode;
@@ -404,10 +353,8 @@ public class HttpClient implements IHttpClient {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            String msg;
-            error = humanError(context, error);
-            msg = error.getMessage();
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+//            error = humanError(context, error);
+            Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

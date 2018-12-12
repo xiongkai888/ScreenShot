@@ -3,12 +3,9 @@ package com.xson.common.app;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Intent;
-import android.os.StrictMode;
 import android.util.Log;
 
-import com.umeng.analytics.MobclickAgent;
 import com.xson.common.utils.L;
-import com.xson.common.utils.SysUtils;
 
 public abstract class BaseApp extends Application implements Thread.UncaughtExceptionHandler {
 
@@ -22,23 +19,18 @@ public abstract class BaseApp extends Application implements Thread.UncaughtExce
     @SuppressLint("NewApi")
     public void init() {
         installMonitor();
-        if (SysUtils.isDebug(this)) {
-            L.debug = true;
-            //内存泄漏监控
-            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            builder.detectAll();
-            builder.penaltyLog();
-            StrictMode.setVmPolicy(builder.build());
-        }
+
+//        AbstractApi.API_URL = (String) SysUtils.getBuildConfigValue(this, "API_URL");
+
         // 友盟捕获异常
 //        MobclickAgent.setCatchUncaughtExceptions(true);
         // 捕捉未知异常
-        Thread.setDefaultUncaughtExceptionHandler(this);
+//        Thread.setDefaultUncaughtExceptionHandler(this);
         // fix: java.lang.IllegalArgumentException: You must not call setTag() on a view Glide is targeting
 //        ViewTarget.setTagId(R.id.tag_first);
 //        AbstractApi.API_URL = (String) SysUtils.getBuildConfigValue(this, "API_URL");
 //        MobclickAgent.setDebugMode( true );
-        MobclickAgent.openActivityDurationTrack(false);
+//        MobclickAgent.openActivityDurationTrack(false);
     }
 
     @Override

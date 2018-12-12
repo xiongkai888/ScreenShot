@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.InjectView;
 
-public class MainActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
+public class MainActivity extends BaseActivity{
 
     @InjectView(R.id.viewPager)
     NoScrollViewPager mViewPager;
@@ -35,37 +35,15 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
             return;
         }
 
-        int[] imageArray = {R.drawable.main_home_on, R.drawable.main_home_off, R.drawable.main_order_on, R.drawable.main_order_off, R.drawable.main_my_on, R.drawable.main_my_off};
-        new TabHelper(this, imageArray, mTabLayout, R.color.color2cc6fc);
-
         mViewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
         mViewPager.setOffscreenPageLimit(2);
-        mTabLayout.addOnTabSelectedListener(this);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-
+        mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setNoScroll(true);
+
+        new TabHelper(this, mTabLayout);
 
         CommonUtils.loadUserInfo(getApplication(),null);
         EventBus.getDefault().register(this);
-
-    }
-
-
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        int position = tab.getPosition();
-        mViewPager.setCurrentItem(position);
-
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
 
     }
 

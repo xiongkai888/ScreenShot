@@ -23,21 +23,18 @@ public class TabHelper {
 
     private Context context;
     private List<String> titleList;
-    private int[] imageArray;
     private TabLayout tabLayout;
-    private int colorId;
+    private int colorId =  R.color.color2cc6fc;//选中的颜色ID
+
+    int[] imageArray = {R.drawable.main_home_on, R.drawable.main_home_off, R.drawable.main_order_on, R.drawable.main_order_off, R.drawable.main_my_on, R.drawable.main_my_off};
 
     /**
      * @param context
-     * @param imageArray 图片资源
      * @param tabLayout
-     * @param colorId    选中的颜色ID
      */
-    public TabHelper(Context context, int[] imageArray, TabLayout tabLayout, int colorId) {
+    public TabHelper(Context context, TabLayout tabLayout) {
         this.context = context;
-        this.imageArray = imageArray;
         this.tabLayout = tabLayout;
-        this.colorId = colorId;
         titleList = getTitleList();
         setupTabIcons();
     }
@@ -79,7 +76,6 @@ public class TabHelper {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 changeTabSelect(tab);
-
             }
 
             @Override

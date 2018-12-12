@@ -1,10 +1,8 @@
 package com.lanmei.screenshot.ui.login;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +12,7 @@ import android.widget.Toast;
 
 import com.lanmei.screenshot.R;
 import com.lanmei.screenshot.api.ScreenShotApi;
+import com.lanmei.screenshot.event.LogoutEvent;
 import com.lanmei.screenshot.event.RegisterEvent;
 import com.lanmei.screenshot.utils.CommonUtils;
 import com.xson.common.app.BaseActivity;
@@ -21,6 +20,7 @@ import com.xson.common.bean.BaseBean;
 import com.xson.common.helper.BeanRequest;
 import com.xson.common.helper.HttpClient;
 import com.xson.common.utils.CodeCountDownTimer;
+import com.xson.common.utils.IntentUtil;
 import com.xson.common.utils.StringUtils;
 import com.xson.common.utils.UIHelper;
 import com.xson.common.widget.CenterTitleToolbar;
@@ -63,7 +63,6 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
     FormatTextView agreeProtocolTv;
 
     String type;
-    boolean isRegister;//是不是注册
 
     private CodeCountDownTimer mCountDownTimer;//获取验证码倒计时
 
@@ -78,47 +77,41 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
     protected void initAllMembersView(Bundle savedInstanceState) {
 
         //初始化倒计时
-        mCountDownTimer = new CodeCountDownTimer(this, 10 * 1000, 1000, obtainCodeBt);
+        mCountDownTimer = new CodeCountDownTimer(this, 60 * 1000, 1000, obtainCodeBt);
 
-        setSupportActionBar(toolbar);
-        ActionBar actionbar = getSupportActionBar();
-
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.back);
+        toolbar.getMenu().clear();
+        toolbar.inflateMenu(R.menu.menu_register);
+        //toolbar的menu点击事件的监听
+        toolbar.setOnMenuItemClickListener(this);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         type = getIntent().getStringExtra("value");
 
-        isRegister = StringUtils.isSame(type, CommonUtils.isOne);
-
-        if (isRegister) {//1是注册2是找回密码
+        if (StringUtils.isSame(type, CommonUtils.isOne)) {//1是注册2是找回密码
             llReferrerPhone.setVisibility(View.GONE);
             agreeProtocolTv.setVisibility(View.VISIBLE);
-            actionbar.setTitle(R.string.register);
-        } else {
+            toolbar.setTitle(R.string.register);
+        } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
             llReferrerPhone.setVisibility(View.GONE);
             agreeProtocolTv.setVisibility(View.GONE);
-            actionbar.setTitle("找回密码");
-            button.setText("确定");
+            toolbar.setTitle("找回密码");
+            button.setText(R.string.sure);
+        }else if (StringUtils.isSame(type, CommonUtils.isThree)){
+            llReferrerPhone.setVisibility(View.GONE);
+            agreeProtocolTv.setVisibility(View.GONE);
+            toolbar.setTitle("修改密码");
+            button.setText(R.string.sure);
+            toolbar.getMenu().clear();
+            pwdEt.setHint("请输入旧密码");
+            pwdAgainEt.setHint("输入新密码");
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_register, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_login:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     //注册或找回密码、修改密码
     private void registerOrRetrievePwd(final String phone, String code, final String pwd) {
@@ -140,10 +133,12 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
     //注册
     private void register(final String phone, String pwd) {
         String apiString;
-        if (isRegister) {
+        if (StringUtils.isSame(type, CommonUtils.isOne)) {//1是注册2是找回密码
             apiString = "app/registered";//注册
-        } else {
+        } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
             apiString = "app/forgot_pwd";//忘记密码
+        }else {
+            apiString = "app/upuserpwd";//修改密码
         }
         ScreenShotApi api = new ScreenShotApi(apiString);
         api.addParams("phone", phone);
@@ -154,12 +149,17 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
                 if (isFinishing()) {
                     return;
                 }
-                if (isRegister) {
+                if (StringUtils.isSame(type, CommonUtils.isOne)) {//1是注册2是找回密码3修改密码
                     UIHelper.ToastMessage(RegisterActivity.this, "注册成功");
-                } else {
+                    EventBus.getDefault().post(new RegisterEvent(phone));
+                } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
+                    EventBus.getDefault().post(new RegisterEvent(phone));
+                    UIHelper.ToastMessage(RegisterActivity.this, "修改密码成功");
+                }else {
+                    EventBus.getDefault().post(new LogoutEvent());
+                    IntentUtil.startActivity(getContext(),LoginActivity.class);
                     UIHelper.ToastMessage(RegisterActivity.this, "修改密码成功");
                 }
-                EventBus.getDefault().post(new RegisterEvent(phone));
                 finish();
             }
         });
@@ -223,7 +223,7 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
         HttpClient httpClient = HttpClient.newInstance(this);
         ScreenShotApi api = new ScreenShotApi("app/login");
         api.addParams("phone", phone);//send
-        if (!isRegister){//(注册时不要加)
+        if (!StringUtils.isSame(type, CommonUtils.isOne)){//(注册时不要加)
             api.addParams("send", CommonUtils.isTwo);//send 不等于空就行
         }
         httpClient.loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {

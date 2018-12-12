@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.lanmei.screenshot.R;
 import com.lanmei.screenshot.event.LogoutEvent;
 import com.lanmei.screenshot.event.SetUserEvent;
+import com.lanmei.screenshot.ui.login.RegisterActivity;
 import com.lanmei.screenshot.ui.mine.activity.AccountDetailsActivity;
 import com.lanmei.screenshot.ui.mine.activity.CompleteInformationActivity;
 import com.lanmei.screenshot.utils.AKDialog;
@@ -59,7 +60,7 @@ public class mineFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.pic_iv, R.id.in_data_iv, R.id.ll_account, R.id.ll_identity, R.id.ll_logout})
+    @OnClick({R.id.pic_iv, R.id.in_data_iv, R.id.ll_account, R.id.ll_identity, R.id.ll_amend_pwd,R.id.ll_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.pic_iv:
@@ -89,6 +90,9 @@ public class mineFragment extends BaseFragment {
                         break;
                 }
 //                IntentUtil.startActivity(context, CompleteInformationActivity.class);//
+                break;
+            case R.id.ll_amend_pwd://修改密码
+                IntentUtil.startActivity(context, RegisterActivity.class,CommonUtils.isThree);
                 break;
             case R.id.ll_logout://退出登录
                 AKDialog.getAlertDialog(context, "确定要退出登录?", new DialogInterface.OnClickListener() {

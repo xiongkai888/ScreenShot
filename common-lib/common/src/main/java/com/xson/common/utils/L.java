@@ -17,10 +17,6 @@ public class L {
     public static boolean debug = true;
     public final static String TAG = "BeanRequest";
     public final static String p = "p";
-    public final static String API_URL = "API_URL";
-    public final static String paramsHashMap = "paramsHashMap";
-    public final static String serialVersionUID = "serialVersionUID";
-    public final static String shadow = "shadow$";
     public final static String path = "path";
     public final static String uid = "uid";
     public final static String data = "data";

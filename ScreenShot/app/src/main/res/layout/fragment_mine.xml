@@ -103,6 +103,25 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_amend_pwd"
+            style="@style/ll_bottom_h"
+            android:visibility="gone"
+            android:padding="@dimen/d_10dp">
+
+
+            <ImageView
+                style="@style/text"
+                android:src="@drawable/mine_6" />
+
+            <TextView
+                style="@style/text_weight"
+                android:layout_marginLeft="@dimen/d_10dp"
+                android:drawableRight="@drawable/in_right"
+                android:text="修改密码" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/ll_logout"
             style="@style/ll_bottom_h_no"
             android:padding="@dimen/d_10dp">
@@ -115,13 +134,9 @@
             <TextView
                 style="@style/text_weight"
                 android:layout_marginLeft="@dimen/d_10dp"
+                android:drawableRight="@drawable/in_right"
                 android:text="退出登录" />
 
-            <TextView
-                style="@style/text12color666"
-                android:layout_marginLeft="@dimen/d_10dp"
-                android:drawableRight="@drawable/in_right"
-                android:gravity="center_vertical" />
         </LinearLayout>
 
     </LinearLayout>
