@@ -97,19 +97,19 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
             llReferrerPhone.setVisibility(View.GONE);
             agreeProtocolTv.setVisibility(View.VISIBLE);
             toolbar.setTitle(R.string.register);
-        } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
+        } else if (StringUtils.isSame(type, CommonUtils.isTwo)) {
             llReferrerPhone.setVisibility(View.GONE);
             agreeProtocolTv.setVisibility(View.GONE);
             toolbar.setTitle("找回密码");
             button.setText(R.string.sure);
-        }else if (StringUtils.isSame(type, CommonUtils.isThree)){
+        } else if (StringUtils.isSame(type, CommonUtils.isThree)) {
             llReferrerPhone.setVisibility(View.GONE);
             agreeProtocolTv.setVisibility(View.GONE);
             toolbar.setTitle("修改密码");
             button.setText(R.string.sure);
             toolbar.getMenu().clear();
-            pwdEt.setHint("请输入旧密码");
-            pwdAgainEt.setHint("输入新密码");
+            pwdEt.setHint("请输入6-18位旧密码");
+            pwdAgainEt.setHint("请输入6-18位新密码");
         }
     }
 
@@ -135,14 +135,17 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
         String apiString;
         if (StringUtils.isSame(type, CommonUtils.isOne)) {//1是注册2是找回密码
             apiString = "app/registered";//注册
-        } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
+        } else if (StringUtils.isSame(type, CommonUtils.isTwo)) {
             apiString = "app/forgot_pwd";//忘记密码
-        }else {
+        } else {
             apiString = "app/upuserpwd";//修改密码
         }
         ScreenShotApi api = new ScreenShotApi(apiString);
         api.addParams("phone", phone);
         api.addParams("password", pwd);
+        if (StringUtils.isSame(type, CommonUtils.isThree)) {
+            api.addParams("newpwd", pwd);//修改密码
+        }
         HttpClient.newInstance(this).loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
             @Override
             public void onResponse(BaseBean response) {
@@ -152,12 +155,12 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
                 if (StringUtils.isSame(type, CommonUtils.isOne)) {//1是注册2是找回密码3修改密码
                     UIHelper.ToastMessage(RegisterActivity.this, "注册成功");
                     EventBus.getDefault().post(new RegisterEvent(phone));
-                } else if (StringUtils.isSame(type, CommonUtils.isTwo)){
+                } else if (StringUtils.isSame(type, CommonUtils.isTwo)) {
                     EventBus.getDefault().post(new RegisterEvent(phone));
-                    UIHelper.ToastMessage(RegisterActivity.this, "修改密码成功");
-                }else {
+                    UIHelper.ToastMessage(RegisterActivity.this, response.getInfo());
+                } else {
                     EventBus.getDefault().post(new LogoutEvent());
-                    IntentUtil.startActivity(getContext(),LoginActivity.class);
+                    IntentUtil.startActivity(getContext(), LoginActivity.class);
                     UIHelper.ToastMessage(RegisterActivity.this, "修改密码成功");
                 }
                 finish();
@@ -223,7 +226,7 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
         HttpClient httpClient = HttpClient.newInstance(this);
         ScreenShotApi api = new ScreenShotApi("app/login");
         api.addParams("phone", phone);//send
-        if (!StringUtils.isSame(type, CommonUtils.isOne)){//(注册时不要加)
+        if (!StringUtils.isSame(type, CommonUtils.isOne)) {//(注册时不要加)
             api.addParams("send", CommonUtils.isTwo);//send 不等于空就行
         }
         httpClient.loadingRequest(api, new BeanRequest.SuccessListener<BaseBean>() {
@@ -240,6 +243,7 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
 
     //注册
     private void loadRegister() {
+        boolean b = StringUtils.isSame(type, CommonUtils.isThree);//修改密码
         phone = CommonUtils.getStringByEditText(phoneEt);//电话号码
         if (StringUtils.isEmpty(phone)) {
             UIHelper.ToastMessage(this, R.string.input_phone_number);
@@ -256,18 +260,34 @@ public class RegisterActivity extends BaseActivity implements Toolbar.OnMenuItem
         }
         String pwd = CommonUtils.getStringByEditText(pwdEt);//
         if (StringUtils.isEmpty(pwd) || pwd.length() < 6) {
-            UIHelper.ToastMessage(this, R.string.input_password_count);
+            if (!b) {
+                UIHelper.ToastMessage(this, R.string.input_password_count);
+            } else {
+                UIHelper.ToastMessage(this, "请输入6-18位旧密码");
+            }
             return;
         }
         String pwdAgain = CommonUtils.getStringByEditText(pwdAgainEt);//
         if (StringUtils.isEmpty(pwdAgain)) {
-            UIHelper.ToastMessage(this, R.string.input_pwd_again);
+            if (!b) {
+                UIHelper.ToastMessage(this, R.string.input_pwd_again);
+            } else {
+                UIHelper.ToastMessage(this, "请输入6-18位新密码");
+            }
             return;
+        } else {
+            if (pwdAgain.length() < 6) {
+                UIHelper.ToastMessage(this, "请输入6-18位新密码");
+                return;
+            }
         }
-        if (!StringUtils.isSame(pwd, pwdAgain)) {
-            UIHelper.ToastMessage(this, R.string.password_inconformity);
-            return;
+        if (!b) {
+            if (!StringUtils.isSame(pwd, pwdAgain)) {
+                UIHelper.ToastMessage(this, R.string.password_inconformity);
+                return;
+            }
         }
+
 
 //        String phone1 = CommonUtils.getStringByEditText(referrerPhoneEt);//推荐人电话号码
 

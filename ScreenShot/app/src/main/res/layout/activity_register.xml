@@ -148,7 +148,7 @@
                         style="@style/text"
                         android:layout_marginRight="15dp"
                         android:src="@drawable/pwd_off"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
 
                 </LinearLayout>

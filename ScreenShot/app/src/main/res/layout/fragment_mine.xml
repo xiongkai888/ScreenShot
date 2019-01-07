@@ -105,7 +105,7 @@
         <LinearLayout
             android:id="@+id/ll_amend_pwd"
             style="@style/ll_bottom_h"
-            android:visibility="gone"
+            android:visibility="visible"
             android:padding="@dimen/d_10dp">
 
 
